@@ -1,0 +1,55 @@
+:root {
+    --article-size: 20em;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    background-color: oklch(39.27% 0.1751 261.53);
+    width: 100vw;
+    height: 100vh;
+}
+
+section {
+    width: var(--article-size);
+    height: var(--article-size);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: oklch(70% 0.1332 261.53);
+    overflow: hidden;
+    display: grid;
+}
+
+section article {
+    width: var(--article-size);
+    height: var(--article-size);
+    overflow: hidden;
+    transition: .5s;
+    padding: .5em;
+}
+
+.row-1 {
+    grid-row: 1;
+}
+
+.row-2 {
+    grid-row: 2;
+}
+
+@keyframes endOfWidthCards {
+    to {
+        transform: translate(-55%, -50%);
+    }
+}
+
+@keyframes endOfHeightCards {
+    to {
+        transform: translate(-50%, -55%);
+    }
+}
