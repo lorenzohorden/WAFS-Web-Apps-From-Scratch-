@@ -1,23 +1,25 @@
-const leerdoelen = [
-    {
-        "titel": "CSS animaties",
-        "beschrijving": "Ik heb een paar keer animaties gebruikt in CSS, maar dat is eigenlijk altijd gekopieerde code. Eigenlijk snap ik niet hoe het werkt en als ik zelf een animatie wil maken doe ik het vaak met JavaScript."
-    },
-    {
-        "titel": "Responsive coderen",
-        "beschrijving": "We hebben eerder in de opleiding bij FeD een beetje besproken hoe je met beperkingen rekening kunt houden in een website. Soms als ik een tutorial of voorbeeldcode bekijk zie ik mediaquery's die ik nog nooit eerder gezien heb, het lijkt me leuk om alle mogelijke situaties te leren. Als ik een website responsive maak voor mobile en desktop gebruik ik vaak heel veel mediaquery's en ik weet dat als ik meer met min-width enzo ga werken dat ik mijn code zo een stuk mooier kan maken."
-    },
-    {
-        "titel": "Verslaglegging",
-        "beschrijving": "Tijdens tech vakken vind ik coderen vaak belangrijker dan het projectverslag, waardoor ik altijd in de laatste week bezig ben met het maken van een verslag. Het lijkt me een goed idee om me tijdens deze minor wat meer te focussen op verslaglegging, commentaar bij coderen en bronvermelding, omdat dat mij beter maakt om mee samen te werken."
-    },
-    {
-        "titel": "",
-        "beschrijving": ""
-    },
-]
+const url = 'https://fdnd.directus.app/items/person/213'
+const nameElement = document.querySelector("#name")
+getData(url).then(myData => {
+    // naam toevoegen aan variabele en dat variabele in element plaatsen
+    const name = myData.data.name
+    nameElement.textContent = name
 
-function addLeerdoelen() {
+
+    const customData = JSON.parse(myData.data.custom)
+    // leerdoelen uit de data halen en die aanmaken
+    const leerdoelen = customData[0].data
+    addLeerdoelen(leerdoelen)
+
+
+    // albums uit de data halen en die aanmaken
+    const albums = customData[1].data
+    addAlbums(albums)
+})
+
+let articles = []
+
+function addLeerdoelen(leerdoelen) {
     const section = document.querySelector("section")
     leerdoelen.forEach((doel) => {
         const article = document.createElement("article")
@@ -32,10 +34,11 @@ function addLeerdoelen() {
 
         section.appendChild(article)
     })
+    // als ik dit buiten de functie doe worden niet alle articles geselecteerd en werkt de functie moveArticle niet op elk element
+    articles = document.querySelectorAll("article")
 }
-addLeerdoelen()
 
-const articles = document.querySelectorAll("article")
+
 const amountOfRows = 2
 let translateLeft = 0
 let translateTop = 0
@@ -81,6 +84,20 @@ document.addEventListener("keydown", (event) => {
 function moveArticle(article) {
     article.style.transform = `translate(${translateLeft}%, ${translateTop}%)`
 }
+
+
+async function getData(URL) {
+	return (
+		fetch(URL)
+		.then (
+			response => response.json()
+		)
+		.then (
+			jsonData => {return jsonData}
+		)
+	);
+}
+
 
 // prevent scrolling with mouse keys
 // https://stackoverflow.com/questions/8916620/disable-arrow-key-scrolling-in-users-browser
