@@ -20,6 +20,7 @@ function addRecordPlayerFunctions () {
     })
 
     function putRecordOnPlayer(recordElement) {
+        // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
         const recordElementLocation = recordElement.getBoundingClientRect()
         const recordPlayerLocation = recordPlayerPlate.getBoundingClientRect()
         const topOffset = recordPlayerLocation.top - recordElementLocation.top
@@ -33,6 +34,7 @@ function addRecordPlayerFunctions () {
 
         audioSrc = `./audio/${findCurrentRecord().id}.mp3`
 
+        // https://stackoverflow.com/questions/9419263/how-to-play-audio
         if(playButton.checked){
             audioElement.src = audioSrc
             audioElement.play()
@@ -43,6 +45,7 @@ function addRecordPlayerFunctions () {
     })
 
     function findCurrentRecord(){
+        // ik deed dit eerst met een forEach loop, maar chatgpt zei dat dit beter was voor mijn doel.
         for (const record of recordElements) {
             if (record.checked) {
                 return record

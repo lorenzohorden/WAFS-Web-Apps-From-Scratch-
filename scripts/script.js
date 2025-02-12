@@ -42,6 +42,7 @@ function addLeerdoelen(leerdoelen) {
 const amountOfRows = 2
 let translateLeft = 0
 let translateTop = 0
+// ik heb aan chatgpt gevraagd hoe ik arrow keys kon gebruiken als eventlistener
 document.addEventListener("keydown", (event) => {
     const section = document.querySelector("section")
     if(event.key === "ArrowUp"){
