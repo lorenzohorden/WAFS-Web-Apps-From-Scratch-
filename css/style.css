@@ -90,7 +90,7 @@ section article ul li:hover {
 }
 
 section article ul li:hover::before {
-    transform: rotate(405deg);
+    transform: rotate(225deg);
 }
 
 @keyframes endOfWidthCards {
