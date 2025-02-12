@@ -9,4 +9,5 @@ function addAlbums(albums) {
         
         parentElement.appendChild(checkbox)
     })
+    addRecordPlayerFunctions()
 }
